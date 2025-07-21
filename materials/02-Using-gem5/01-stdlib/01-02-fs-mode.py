@@ -25,3 +25,10 @@ cache_hierarchy = MESITwoLevelCacheHierarchy(
 
 # Set up the system memory.
 memory = SingleChannelDDR3_1600(size="3GB")
+
+processor = SimpleSwitchableProcessor(
+    starting_core_type=CPUTypes.TIMING,
+    switch_core_type=CPUTypes.O3,
+    isa=ISA.X86,
+    num_cores=2,
+)
