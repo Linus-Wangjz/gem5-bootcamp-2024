@@ -8,6 +8,8 @@ from gem5.resources.resource import obtain_resource,BinaryResource
 from gem5.simulate.simulator import Simulator
 from gem5.utils.requires import requires
 
+from pathlib import Path
+
 # This check ensures the gem5 binary is compiled to the ARM ISA target. If not,
 # an exception will be thrown.
 requires(isa_required=ISA.X86)
@@ -31,7 +33,8 @@ board = SimpleBoard(
 )
 
 # Add the binary to the board using `BinaryResource`
-
+local_path = Path(__file__).resolve().parent / "pattern"
+binary = BinaryResource(local_path=local_path)
 board.set_se_binary_workload(binary)
 
 simulator = Simulator(board=board)

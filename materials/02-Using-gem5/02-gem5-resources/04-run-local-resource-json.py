@@ -31,7 +31,7 @@ board = SimpleBoard(
 )
 
 # Add the binary to the board using `obtain_resource`
-
+board.set_se_binary_workload(obtain_resource("x86-pattern-print"))
 board.set_se_binary_workload(binary)
 
 simulator = Simulator(board=board)

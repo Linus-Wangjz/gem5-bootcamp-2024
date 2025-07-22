@@ -51,3 +51,17 @@ board = SimpleBoard(
 )
 
 # Print all the available workloads in the suite
+getting_started_suite = obtain_resource("x86-getting-started-benchmark-suite")
+print("Input groups in the suite")
+print(getting_started_suite.get_input_groups())
+for workload in getting_started_suite:
+    print(f"Workload ID: {workload.get_id()}")
+    print(f"workload version: {workload.get_resource_version()}")
+    print("=========================================")
+
+npb_is_workload = list(getting_started_suite.with_input_group("is"))[0]
+print(f"Workload ID: {npb_is_workload.get_id()}")
+board.set_workload(npb_is_workload)
+
+simulator = Simulator(board=board)
+simulator.run()
