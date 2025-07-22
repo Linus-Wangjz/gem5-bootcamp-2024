@@ -64,8 +64,10 @@ system.mem_ctrl.dram.read_buffer_size = 32
 system.mem_ctrl.dram.write_buffer_size = 64
 
 ## Insert CommMonitor here
-system.l1cache.mem_side = system.membus.cpu_side_ports # need to remove to add CommMonitor
-
+# system.l1cache.mem_side = system.membus.cpu_side_ports # need to remove to add CommMonitor
+system.comm_monitor = CommMonitor()
+system.comm_monitor.cpu_side_port = system.l1cache.mem_side
+system.comm_monitor.mem_side_port = system.membus.cpu_side_ports
 
 ##
 system.mem_ctrl.port = system.membus.mem_side_ports

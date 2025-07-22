@@ -49,3 +49,21 @@ board = X86Board(
 )
 
 # Add code here
+workload = obtain_resource("x86-ubuntu-24.04-boot-with-systemd", resource_version="1.0.0")
+board.set_workload(workload)
+
+def exit_event_handler():
+    print("first exit event: Kernel booted")
+    yield False
+    print("second exit event: In after boot")
+    yield False
+    print("third exit event: After run script")
+    yield True
+
+simulator = Simulator(
+    board=board,
+    on_exit_event={
+        ExitEvent.EXIT: exit_event_handler(),
+    },
+)
+simulator.run()

@@ -79,7 +79,9 @@ args = parser.parse_args()
 # Insert the desired memory here
 # Available memory can be found in src/python/gem5/components/memory/
 
-# Fill this in
+# TODO: Fill this in
+# memory = SingleChannelSimpleMemory(latency="50ns", bandwidth="32GiB/s", size="8GiB", latency_var="10ns")
+memory = SingleChannelDDR4_2400()
 
 
 generator = generator_factory(
